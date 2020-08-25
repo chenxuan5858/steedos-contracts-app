@@ -1,0 +1,86 @@
+name: buildings
+icon: record
+label: 楼宇项目
+enable_chatter: true
+fields:
+  name:
+    type: text
+    label: 项目名称
+    name: name
+    searchable: true
+    required: true
+  place:
+    type: text
+    label: 位置
+    name: place
+  type:
+    type: text
+    label: 楼宇类型
+    name: type
+  area:
+    type: number
+    scale: 3
+    label: 房本面积
+    name: area
+  rentalarea:
+    type: number
+    scale: 3
+    label: 可租赁面积
+    name: rentalarea
+  selfusearea:
+    type: number
+    scale: 3
+    label: 自用面积
+    name: selfusearea
+  struture:
+    type: text
+    label: 房屋结构
+    name: struture
+  elevatorNO:
+    type: text
+    label: 电梯数量
+    name: elevatorNO
+  hight:
+    type: text
+    label: 层高
+    name: hight 
+  Loadbearing:
+    type: text
+    label: 楼板承重（KG/平方米）
+    name: Loadbearing
+  ACTime:
+    type: text
+    label: 空调时间
+    name: ACTime
+  Electedload:
+    type: text
+    label: 标准电量（KW/平方米）
+    name: Electedload
+permission_set:
+  user:
+    allowCreate: false
+    allowDelete: false
+    allowEdit: false
+    allowRead: true
+    modifyAllRecords: false
+    viewAllRecords: true
+  contract_manager:
+    allowCreate: false
+    allowEdit: false
+    allowDelete: false
+    allowRead: true
+    modifyAllRecords: false
+    viewAllRecords: true
+  admin:
+    allowCreate: true
+    allowDelete: true
+    allowEdit: true
+    allowRead: true
+    modifyAllRecords: true
+    viewAllRecords: true
+list_views:
+  all:
+    label: 全部
+    filter_scope: space
+    columns:
+      - name

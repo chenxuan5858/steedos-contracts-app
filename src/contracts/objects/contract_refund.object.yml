@@ -1,5 +1,5 @@
-name: contract_payments
-label: 付款
+name: contract_refund
+label: 退款
 icon: logging
 enable_chatter: true
 fields:
@@ -11,12 +11,12 @@ fields:
     is_wide: true
     name: name
   amount_description:
-    label: 付款说明
+    label: 退款说明
     type: textarea
     is_wide: true
     rows: 2
   amount:
-    label: 付款金额
+    label: 退款金额
     type: currency
     required: true
     sortable: true
@@ -51,7 +51,7 @@ fields:
     searchable: true
 list_views:
   unpayed:
-    label: 待付款
+    label: 待退款
     filter_scope: space
     filters: !<tag:yaml.org,2002:js/function> |-
       function () {
@@ -80,7 +80,7 @@ list_views:
       - - due_date
         - desc
   payed:
-    label: 已付款
+    label: 已退款
     filter_scope: space
     filters: !<tag:yaml.org,2002:js/function> |-
       function () {

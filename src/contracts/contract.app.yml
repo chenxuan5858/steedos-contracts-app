@@ -6,17 +6,18 @@ is_creator: true
 sort: 1000
 objects:
   - contracts
-  - contract_payments
   - contract_receipts
+  - contract_refund
   - accounts
   - contacts
   - contract_types
+  - buildings
+  - room
   - tasks
   - events
   - reports
 mobile_objects: 
   - contracts
-  - contract_payments
   - contract_receipts
   - accounts
   - contacts
