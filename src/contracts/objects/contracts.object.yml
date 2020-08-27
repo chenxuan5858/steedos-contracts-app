@@ -53,7 +53,7 @@ fields:
     reference_to: buildings
     required: true
     filterable: true
-  roomNO:
+  room_number:
     label: 房间号
     type: lookup
     reference_to: room
@@ -62,7 +62,7 @@ fields:
     multiple: true
     filtersFunction: !!js/function |
       function () {
-        return "(rentalstatus ne true)";
+        return "(rentalstatus ne 'no')";
       }
   rentalsquare:
     label: 租赁面积（平方米）
@@ -71,15 +71,25 @@ fields:
     required: true
     sortable: true
   bop3:
-    type: boolean
+    type: select
     label: 是否递增
-    defaultValue: false
+    options: 
+      - label: 是
+        value: yes
+      - label: 否
+        value: no    
+    defaultValue: no
     searchable: true
     sortable: true
   bop4:
-    type: boolean
+    type: select
     label: 是否有免租期
-    defaultValue: false
+    options: 
+      - label: 是
+        value: yes
+      - label: 否
+        value: no    
+    defaultValue: no
     searchable: true
     sortable: true
   owner:
@@ -185,7 +195,11 @@ fields:
     filterable: true
     required: false
   remark:
-    label: 备注
+    label: 递增说明
+    type: textarea
+    is_wide: true
+  remark2:
+    label: 合同备注
     type: textarea
     is_wide: true
   meetingstate:
