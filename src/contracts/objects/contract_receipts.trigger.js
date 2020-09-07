@@ -1,4 +1,4 @@
-const contractManager = require('./contracts.manager');
+/* const contractManager = require('./contracts.manager');
 const receiptManager = require('./contract_receipts.manager');
 module.exports = {
 
@@ -31,3 +31,5 @@ module.exports = {
     await contractManager.caculateAmount(this.previousDoc.contract);
   },
 };
+
+*/

@@ -9,7 +9,7 @@ enable_api: true
 enable_chatter: true
 fields:
   name:
-    label: 名称
+    label: 企业名称
     type: text
     defaultValue: ""
     description: ""
@@ -18,150 +18,22 @@ fields:
     required: true
     sortable: true
     name: name
-  is_supplier:
-    type: boolean
-    label: 供应商
-    hidden: true
-    omit: true
-  is_customer:
-    type: boolean
-    label: 客户
-    hidden: true
-    omit: true
-  type:
-    label: 类型
-    type: select
-    sortable: true
-    options:
-      - label: 分析师
-        value: Analyst
-      - label: 竞争者
-        value: Competitor
-      - label: 顾客
-        value: Customer
-      - label: 集成商
-        value: Integrator
-      - label: 投资者
-        value: Investor
-      - label: 合作伙伴
-        value: Partner
-      - label: 新闻界
-        value: Press
-      - label: 潜在
-        value: Prospect
-      - label: 代理商
-        value: Reseller
-      - label: 其他
-        value: Other
-    filterable: true
-  industry:
-    type: select
-    label: 行业
-    searchable: true
-    sortable: true
-    options:
-      - label: 农业
-        value: Agriculture
-      - label: 服饰
-        value: Apparel
-      - label: 银行
-        value: Banking
-      - label: 生物科技
-        value: Biotechnology
-      - label: 化工
-        value: Chemicals
-      - label: 通信
-        value: Communications 
-      - label: 建筑
-        value: Construction
-      - label: 咨询
-        value: Consulting
-      - label: 教育
-        value: Education
-      - label: 电子
-        value: Electronics
-      - label: 能源
-        value: Energy
-      - label: 工程
-        value: Engineering
-      - label: 娱乐
-        value: Entertainment
-      - label: 环保
-        value: Environmental
-      - label: 金融
-        value: Finance
-      - label: 食品饮料
-        value: Food_&_Beverage
-      - label: 政府组织
-        value: Government
-      - label: 医疗保健
-        value: Healthcare
-      - label: 服务
-        value: Hospitality
-      - label: 保险
-        value: Insurance
-      - label: 机械
-        value: Machinery
-      - label: 制造
-        value: Manufacturing
-      - label: 媒体
-        value: Media
-      - label: 非牟利组织
-        value: Not_For_Profit
-      - label: 其他
-        value: Other
-      - label: 休闲
-        value: Recreation
-      - label: 零售
-        value: Retail
-      - label: 航运
-        value: Shipping
-      - label: 科技
-        value: Technology
-      - label: 电讯
-        value: Telecommunications
-      - label: 交通运输
-        value: Transportation
-      - label: 公用事业
-        value: Utilities
-    filterable: true
-  rating:
-    label: 分级
-    type: select
-    sortable: true
-    options:
-      - label: 高
-        value: Hot
-      - label: 中
-        value: Warm
-      - label: 低
-        value: Cold
-    filterable: true
-  credit_code:
+  tax_number:
+    label: 统一社会代码
     type: text
-    label: 纳税人识别号（身份证/其他）
-    unique: true
-    name: credit_code
     searchable: true
-  website:
-    type: url
-    label: 网站
-  address:
-    type: text
-    label: 公司地址
-    defaultValue: ""
-    is_wide: true
-    name: address
-  description:
-    label: 备注
-    type: textarea
-    is_wide: true
-    name: description
+    required: true
   invoice_address:
-    label: 开票地址
+    label: 开票类型
     group: 开票信息
-    type: text
+    type: select
+    options:
+      - label: 增值税普通发票
+        value: invoicetype1
+      - label: 增值税专用发票
+        value: invoicetype2
     name: invoice_address
+    required: true
   invoice_phone:
     label: 开票电话
     group: 开票信息
@@ -177,6 +49,181 @@ fields:
     group: 开票信息
     type: text
     name: invoice_combinenum
+  regis_time:
+    label: 企业注册时间
+    group: 企业信息
+    type: date
+    sortable: true
+    filterable: true
+    required: false
+  regis_amount:
+    label: 注册资本（万元）
+    group: 企业信息
+    type: currency
+    required: false
+    sortable: true
+  regis_location:
+    label: 注册地址
+    group: 企业信息
+    type: text
+    required: false
+    sortable: true
+  Legal_person:
+    label: 法人
+    group: 企业信息
+    type: text
+    required: false
+    sortable: true
+  Legal_person_contact:
+    label: 法人联系方式
+    group: 企业信息
+    type: text
+    required: false
+    sortable: true
+  company_type:
+    label: 公司类型
+    group: 企业信息
+    type: select
+    options:
+      - label: 有限责任公司(自然人独资)
+        value: 有限责任公司(自然人独资)
+      - label: 有限责任公司(自然人投资或控股)
+        value: 有限责任公司(自然人投资或控股)
+      - label: 股份有限公司(中外合资、未上市)
+        value: 股份有限公司(中外合资、未上市)
+      - label: 有限责任公司(法人独资)
+        value: 有限责任公司(法人独资)
+      - label: 其他有限责任公司
+        value: 其他有限责任公司
+      - label: 有限责任公司分公司(自然人投资或控股)
+        value: 有限责任公司分公司(自然人投资或控股)
+      - label: 股份有限公司(非上市、自然人投资或控股)
+        value: 股份有限公司(非上市、自然人投资或控股)
+      - label: 社会团体
+        value: 社会团体
+  industrial:
+    label: 产业领域
+    group: 企业信息
+    type: select
+    options:
+      - label: 软件和信息技术服务业
+        value: 软件和信息技术服务业
+      - label: 科技推广和应用服务业
+        value: 科技推广和应用服务业
+      - label: 文化艺术业
+        value: 文化艺术业
+      - label: 金融业
+        value: 金融业
+      - label: 批发和零售业
+        value: 批发和零售业
+      - label: 商务服务业
+        value: 商务服务业
+  in_time:
+    label: 入驻时间
+    group: 企业信息
+    type: date
+    sortable: true
+    filterable: true
+    required: false
+  financing:
+    label: 是否融资
+    group: 企业信息
+    type: select
+    options:
+      - label: 是
+        value: yes
+      - label: 否
+        value: no
+    required: false
+    sortable: true
+  financing_amount:
+    label: 融资金额
+    group: 企业信息
+    type: currency
+    required: false
+    sortable: true
+  financing_time:
+    label: 融资时间
+    group: 企业信息
+    type: date
+    required: false
+    sortable: true
+  listed:
+    label: 是否上市
+    group: 企业信息
+    type: select
+    options:
+      - label: 是
+        value: yes
+      - label: 否
+        value: no
+    required: false
+    sortable: true
+  listed_time:
+    label: 上市时间
+    group: 企业信息
+    type: date
+    required: false
+    sortable: true
+  intellectual_property:
+    label: 知识产权数量
+    group: 企业信息
+    type: text
+    required: false
+    sortable: true
+  software:
+    label: 软件著作权申请数
+    group: 企业信息
+    type: text
+    required: false
+    sortable: true
+  patent:
+    label: 发明专利数量
+    group: 企业信息
+    type: text
+    required: false
+    sortable: true
+  trademark:
+    label: 商标数量
+    group: 企业信息
+    type: text
+    required: false
+    sortable: true
+  company_good:
+    label: 企业资质
+    group: 企业信息
+    type: select
+    options:
+      - label: 国高新
+        value: 国高新
+      - label: 村高新
+        value: 村高新 
+      - label: 金种子
+        value: 金种子
+      - label: 瞪羚
+        value: 瞪羚
+    required: false
+    sortable: true
+  website:
+    label: 网址
+    group: 企业信息
+    type: text
+    required: false
+    sortable: true
+  worker_number:
+    label: 人数
+    group: 企业信息
+    type: text
+    required: false
+    sortable: true
+  describe:
+    label: 简介
+    group: 企业信息
+    type: text
+    is_wide: true
+    required: false
+    sortable: true
+  
 list_views:
   all:
     label: 所有客户

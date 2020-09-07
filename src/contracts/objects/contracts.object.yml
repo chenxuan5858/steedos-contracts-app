@@ -1,5 +1,5 @@
 name: contracts
-label: 合同
+label: 客户合同
 icon: contract
 enable_files: true
 enable_search: true
@@ -10,18 +10,17 @@ enable_chatter: true
 enable_audit: true
 enable_workflow: true
 fields:
-  contractNO:
-    label: 合同号
-    type: text
-    required: true
-    sortable: true
   name:
     label: 合同名称
     type: text
     required: true
     searchable: true
     index: true
-    defaultValue: 待开发
+  contractNO:
+    label: 合同号
+    type: text
+    required: true
+    sortable: true
   clientname:
     type: lookup
     relatedList: true
@@ -47,7 +46,7 @@ fields:
         value: 北京牡丹创新科技孵化器有限公司
     required: true
     filterable: true
-  building:
+  building_select:
     type: lookup
     label: 租赁楼宇
     reference_to: buildings
@@ -60,9 +59,14 @@ fields:
     required: true
     sortable: true
     multiple: true
+    depend_on: ['building_select']
     filtersFunction: !!js/function |
-      function () {
-        return "(rentalstatus ne 'no')";
+      function (filters, depend_on) {
+        if(depend_on && depend_on.building_select){
+          return "((rentalstatus ne 'no') and (building eq '"+depend_on.building_select+"'))";
+        }else{
+          return "(rentalstatus ne 'no')";
+        }
       }
   rentalsquare:
     label: 租赁面积（平方米）
@@ -70,6 +74,8 @@ fields:
     scale: 2
     required: true
     sortable: true
+    filterable: true
+    searchable: true
   bop3:
     type: select
     label: 是否递增
@@ -115,10 +121,14 @@ fields:
     is_wide: true
   contract_type1:
     label: 主合同类别
-    type: text
-    required: true
+    type: select
+    options: 
+      - label: 房屋租赁
+        value: rentalcontract
+    defaultValue: rentalcontract  
+    searchable: true
     sortable: true
-    defaultValue: 房屋租赁合同
+    required: true
   rentalamount:
     label: 租金单价（元/天/平方米）
     type: number
@@ -126,10 +136,19 @@ fields:
     required: true
     sortable: true
   contract_type2:
-    type: lookup
+    type: select
     label: 服务合同类别
-    reference_to: contract_types
+    options: 
+      - label: 技术服务
+        value: servicecontract1
+      - label: 智慧园区服务
+        value: servicecontract2
+      - label: 智慧园区物业管理服务
+        value: servicecontract3
+      - label: 物业管理服务
+        value: servicecontract4
     required: false
+    defaultValue: servicecontract1
   serviceamount:
     label: 服务费单价（元/天/平方米）
     type: number
@@ -217,13 +236,22 @@ fields:
     options:
       - label: 履行中
         value: running
-      - label: 已到期
-        value: end
       - label: 已终止
-        value: droped
+        value: end
+  contract_end_time:
+     label: 合同终止日期
+     type: date
+     sortable: true
+     filterable: true
+     required: false
+  remark3:
+    label: 终止说明
+    type: textarea
+    is_wide: true
+
 list_views:
   allrunning:
-    label: 所有履行中合同
+    label: 履行中合同
     filters: !<tag:yaml.org,2002:js/function> |-
       function () {
           return [
@@ -264,8 +292,9 @@ list_views:
     sort:
       - - create_date
         - desc
+
   allend:
-    label: 所有已到期合同
+    label: 已终止合同
     filters: !<tag:yaml.org,2002:js/function> |-
       function () {
           return [
@@ -303,51 +332,13 @@ list_views:
     sort:
       - - create_date
         - desc
-  alldroped:
-    label: 所有已终止合同
+
+  allcontracts:
+    label: 所有合同
     filters: !<tag:yaml.org,2002:js/function> |-
       function () {
           return [
-            ["contract_fulfillment_state","=","droped"]
-          ];
-      }
-    columns:
-      - field: create_date
-        width: 150
-        wrap: true
-      - field: name
-        width: 280
-        wrap: true
-      - field: othercompany
-        width: 200
-      - field: amount
-        width: 120
-      - field: contract_type
-        width: 120
-      - field: bop
-        width: 120
-      - field: owner
-        width: 120
-      - field: signed_date
-        width: 150
-      - field: start_date
-        width: 150
-      - field: end_date
-        width: 150
-    filter_scope: space
-    filter_fields:
-      - contract_types
-      - signed_date
-      - othercompany
-    sort:
-      - - create_date
-        - desc
-  allexpired:
-    label: 所有已失效合同
-    filters: !<tag:yaml.org,2002:js/function> |-
-      function () {
-          return [
-            ["contract_fulfillment_state","=","droped"],["contract_fulfillment_state","=","end"]
+            ["contract_fulfillment_state","=","running"],["contract_fulfillment_state","=","end"]
           ];
       }
     columns:

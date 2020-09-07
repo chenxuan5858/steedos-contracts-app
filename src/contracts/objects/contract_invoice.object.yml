@@ -1,10 +1,10 @@
-name: contract_receipts
-label: 合同收款
+name: contract_invoice
+label: 收款发票
 icon: product_consumed
 enable_chatter: true
 fields:
   name:
-    label: 收款编号
+    label: 发票编号
     type: autonumber
     formula: "{YYYY}-{0000}"
     required: false
@@ -12,78 +12,99 @@ fields:
     index: true
     omit: true
     name: name
-  fees_type:
-    label: 收款类型
+  invoice_name:
+    label: 发票类型
     type: select
     options: 
-      - label: 房租费
-        value: rentalfee
-      - label: 房租保证金
-        value: rentaldeposit
-      - label: 技术服务费
-        value: servicefee1
-      - label: 智慧园区服务费
-        value: servicefee2
-      - label: 智慧园区物业管理服务费
-        value: servicefee3
-      - label: 物业管理服务费
-        value: servicefee4
-      - label: 履约保证金
-        value: servicedeposit
+      - label: 房租发票
+        value: invoicetype1
+      - label: 技术服务发票
+        value: invoicetype2
+      - label: 智慧园区服务发票
+        value: invoicetype3
+      - label: 智慧园区物业管理服务发票
+        value: invoicetype4
+      - label: 物业管理服务发票
+        value: invoicetype5
     required: true
     searchable: true
-    is_wide: false
-    name: fees_type
+    name: invoice_name
   contract:
-    label: 收款合同
+    label: 发票合同
     type: master_detail
     reference_to: contracts
     required: true
     sortable: true
     name: contract
     filterable: true
-  fee_period_start:
-    label: 收款期限起
+  invoice_period_start:
+    label: 发票账期起
     type: date
     sortable: true
     filterable: true
     required: false
-  fee_period_end:
-    label: 收款期限止
+  invoice_period_end:
+    label: 发票账期止
     type: date
     sortable: true
     filterable: true
     required: false
-  amount:
-    label: 应收金额
+  invoice_amount:
+    label: 开票金额
     type: currency
     required: false
     sortable: true
-    name: amount
-  paid_amount:
-    label: 实收金额
-    type: currency
-    required: false
-    sortable: true
-    name: paid_amount
-  paid_date:
-    label: 到账时间
+    name: invoice_amount
+  paid_time:
+    label: 收款日期
     type: date
     sortable: true
-    name: paid_rantal_date
-  fees_finished:
-    label: 费用全部到账
+    filterable: true
+    required: false
+  invoice_type:
+    label: 发票种类
+    type: select
+    options: 
+      - label: 增值税普通发票
+        value: invoicetype1
+      - label: 增值税专用发票
+        value: invoicetype2
+    sortable: true
+    filterable: true
+    required: false
+  client_tax_number:
+    label: 客户统一信用代码
+    type: text
+  invoice_finished:
+    label: 已开票
     type: boolean
-  paid_real_date:
-    label: 全部到账时间
+  invoice_date:
+    label: 开票日期
     type: date
     sortable: true
-    name: paid_real_date
-  fees_description:
-    label: 收款说明
-    type: textarea
-    is_wide: true
-    rows: 2
+    filterable: true
+    required: false
+  invoice_number:
+    label: 发票号
+    type: text
+    sortable: true
+    filterable: true
+    required: false
+  invoice_taken:
+    label: 客户已领取
+    type: boolean
+  taken_date:
+    label: 领取日期
+    type: date
+    sortable: true
+    filterable: true
+    required: false
+  taken_people:
+    label: 领取人
+    type: text
+    sortable: true
+    filterable: true
+    required: false
   account:
     type: lookup
     label: 付款方

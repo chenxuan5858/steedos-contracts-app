@@ -7,10 +7,10 @@ sort: 1000
 objects:
   - contracts
   - contract_receipts
+  - contract_invoice
   - contract_refund
   - accounts
   - contacts
-  - contract_types
   - buildings
   - room
   - tasks

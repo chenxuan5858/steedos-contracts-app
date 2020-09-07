@@ -1,39 +1,29 @@
 name: contract_refund
-label: 退款
+label: 保证金退款
 icon: logging
 enable_chatter: true
 fields:
   name:
-    label: 名称
-    type: text
+    label: 退款编号
+    type: autonumber
+    formula: "{YYYY}-{0000}"
+    required: false
+    searchable: true
+    index: true
+    omit: true 
+    name: name
+  refund_type:
+    label: 退款类型
+    type: select
+    options: 
+      - label: 保证金退款
+        value: rentaldeposit
+      - label: 履约保证金退款
+        value: servicedeposit
     required: true
     searchable: true
-    is_wide: true
-    name: name
-  amount_description:
-    label: 退款说明
-    type: textarea
-    is_wide: true
-    rows: 2
-  amount:
-    label: 退款金额
-    type: currency
-    required: true
-    sortable: true
-    name: amount
-  due_date:
-    label: 计划付款时间
-    type: date
-    sortable: true
-    name: due_date
-  finished:
-    label: 已完成
-    type: boolean
-  real_date:
-    label: 实际付款时间
-    type: date
-    sortable: true
-    name: real_date
+    is_wide: false
+    name: refund_type
   contract:
     label: 合同
     type: master_detail
@@ -42,13 +32,39 @@ fields:
     sortable: true
     name: contract
     filterable: true
+  refund_amount:
+    label: 退款金额
+    type: currency
+    required: true
+    sortable: true
+    name: refund_amount
+  refund_date:
+    label: 计划退款时间
+    type: date
+    sortable: true
+    name: refund_date
+    required: true
+  finished:
+    label: 已完成
+    type: boolean
+  real_date:
+    label: 实际退款时间
+    type: date
+    sortable: true
+    name: real_date
+  refund_description:
+    label: 退款说明
+    type: textarea
+    is_wide: true
+    rows: 2
   account:
     type: lookup
-    label: 收款方
-    omit: true
-    reference_to: accounts 
+    label: 退款方
+    reference_to: accounts
     relatedList: true
     searchable: true
+    omit: true
+
 list_views:
   unpayed:
     label: 待退款

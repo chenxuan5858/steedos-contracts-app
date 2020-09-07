@@ -1,9 +1,9 @@
-const objectql = require('@steedos/objectql');
+/* const objectql = require('@steedos/objectql');
 const contractManager = require('./contracts.manager');
 /**
  * 
  * @param {string} receiptId 
- */
+
 async function caculateReceiptAmount(receiptId) {
   if (!receiptId) {
     return;
@@ -20,3 +20,4 @@ async function caculateReceiptAmount(receiptId) {
 module.exports = {
   caculateReceiptAmount
 };
+*/
