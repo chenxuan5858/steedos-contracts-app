@@ -105,9 +105,9 @@ list_views:
         width: 280
       - field: amount
         width: 120
-      - field: finished
+      - field: fees_finished
         width: 100
-    filters: [["finished", "=", false]]
+    filters: [["fees_finished", "=", false]]
     filter_fields: ["contract", "account", "due_date"]
     filter_scope: space
     sort:
@@ -126,9 +126,9 @@ list_views:
         width: 280
       - field: amount
         width: 120
-      - field: finished
+      - field: fees_finished
         width: 100
-    filters: [["finished", "=", true]]
+    filters: [["fees_finished", "=", true]]
     filter_fields: ["contract", "account", "real_date"]
     filter_scope: space
     sort:
@@ -156,24 +156,7 @@ list_views:
     sort:
       - - due_date
         - desc
-  recent:
-    label: 最近查看
-    filter_fields:
-      - field: due_date
-        width: 150
-      - field: real_date
-        width: 150
-      - field: name
-        width: 220
-      - field: contract
-        width: 280
-      - field: account
-        width: 280
-      - field: amount
-        width: 120
-      - field: finished
-        width: 100
-    filter_scope: space
+
 permission_set:
   user:
     allowCreate: true

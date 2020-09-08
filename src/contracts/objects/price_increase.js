@@ -8,10 +8,12 @@ async function price_increase(contractId) {
     if (mark == "无递增")
       {throw new Error('请在递增说明填写递增情况');
     }
-    } else if (bop3 == 'no') {
+    } 
+    else if (bop3 == 'no') 
+    {
     let mark = "无递增";
     await contractObj.directUpdate(contractId, { remark: mark });
-  }
+    }
 }
 
 
