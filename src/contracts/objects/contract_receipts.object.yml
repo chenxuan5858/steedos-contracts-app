@@ -70,7 +70,7 @@ fields:
     label: 到账时间
     type: date
     sortable: true
-    name: paid_rantal_date
+    name: paid_date
   fees_finished:
     label: 费用全部到账
     type: boolean
@@ -95,17 +95,23 @@ list_views:
   pending:
     label: 待收款
     columns:
-      - field: due_date
-        width: 150
-      - field: name
-        width: 220
       - field: contract
-        width: 280
-      - field: account
-        width: 280
+        width: 200
+      - field: fees_type
+        width: 150
+      - field: fee_period_start
+        width: 120
+      - field: fee_period_end
+        width: 120
       - field: amount
         width: 120
+      - field: paid_amount
+        width: 120
+      - field: paid_date
+        width: 120
       - field: fees_finished
+        width: 150
+      - field: paid_real_date
         width: 100
     filters: [["fees_finished", "=", false]]
     filter_fields: ["contract", "account", "due_date"]
@@ -116,17 +122,23 @@ list_views:
   receipted:
     label: 已收款
     columns:
-      - field: real_date
-        width: 150
-      - field: name
-        width: 220
       - field: contract
-        width: 280
-      - field: account
-        width: 280
+        width: 200
+      - field: fees_type
+        width: 150
+      - field: fee_period_start
+        width: 120
+      - field: fee_period_end
+        width: 120
       - field: amount
         width: 120
+      - field: paid_amount
+        width: 120
+      - field: paid_date
+        width: 120
       - field: fees_finished
+        width: 150
+      - field: paid_real_date
         width: 100
     filters: [["fees_finished", "=", true]]
     filter_fields: ["contract", "account", "real_date"]
@@ -137,19 +149,23 @@ list_views:
   all:
     label: 所有
     columns:
-      - field: due_date
-        width: 150
-      - field: real_date
-        width: 150
-      - field: name
-        width: 220
       - field: contract
-        width: 280
-      - field: account
-        width: 280
+        width: 200
+      - field: fees_type
+        width: 150
+      - field: fee_period_start
+        width: 120
+      - field: fee_period_end
+        width: 120
       - field: amount
         width: 120
-      - field: finished
+      - field: paid_amount
+        width: 120
+      - field: paid_date
+        width: 120
+      - field: fees_finished
+        width: 150
+      - field: paid_real_date
         width: 100
     filter_fields: ["contract", "account", "due_date", "real_date"]
     filter_scope: space
